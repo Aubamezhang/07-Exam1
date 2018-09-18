@@ -2,8 +2,8 @@
 Exam 1, problem 1.
 
 Authors: David Mutchler, Vibha Alangar, Valerie Galluzzi, Mark Hays,
-         Amanda Stouder, their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         Amanda Stouder, their colleagues and JAKE ZHANG
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -88,8 +88,36 @@ def problem1a(rectangle, square, thickness, window):
       :type thickness: int
       :type window:    rg.RoseWindow
     """
+    color = rectangle.outline_color
+    rec_thick = rectangle.outline_thickness
+    pointleft = rectangle.get_upper_left_corner()
+    pointright = rectangle.get_lower_right_corner()
+    ULX = pointleft.x
+    ULY = pointleft.y
+    LRX = pointright.x
+    LRY = pointright.y
+    rectangle = rg.Rectangle(rg.Point(ULX, ULY), rg.Point(LRX, LRY))
+    rectangle.outline_color = color
+    rectangle.outline_thickness = rec_thick
+    rectangle.attach_to(window)
+
+    color2 = square.fill_color
+    length = square.length_of_each_side
+    center = square.center
+    square = rg.Square(center, length)
+    square.fill_color = color2
+    square.attach_to(window)
+
+    width = rectangle.get_width()
+    midpoint = width/2
+    line = rg.Line(center, rg.Point(ULX + midpoint, ULY))
+    line.attach_to(window)
+    line.color = color
+    line.thickness = thickness
+
+    window.render()
     # --------------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 2. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
 
@@ -137,7 +165,7 @@ def problem1b(point, win, width, height, color):
       Draws an rg.Ellipse for which:
         -- The topmost point of the rg.Ellipse is the given rg.Point.
         -- The width of the rg.Ellipse is the given width.
-        -- The height of the rg.Ellipse is the given width.
+        -- The height of the rg.Ellipse is the given height.
         -- The fill color of the rg.Ellipse is the given color.
       Must render but   ** NOT close **   the window.
 
@@ -148,8 +176,17 @@ def problem1b(point, win, width, height, color):
       :type height: int
       :type color:  str
     """
+    x = point.x
+    y = point.y
+
+    ellipse = rg.Ellipse(rg.Point(x-width/2, y+height), rg.Point(x+width/2, y))
+    ellipse.fill_color = color
+    ellipse.attach_to(win)
+
+    win.render()
+
     # --------------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
+    # DONE: 3. Implement and test this function.  SEE THE PICTURES in the PDF!
     #          Tests have been written for you (above).
     # --------------------------------------------------------------------------
 
